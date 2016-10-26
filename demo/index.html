@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+ <meta charset="utf-8" />
+ <title>Demo: Accessible simple tooltip using ARIA and Vanilla JavaScript - Van11y </title>
+ 
+<link href="./styles.css" rel="stylesheet" media="all" />
+
+<meta name="description" content="This script provides an accessible simple tooltip, using ARIA" />
+<meta name="keywords" content="collection, accessibility, scripts, projects, tooltip, accordion, hide/show, customisable" />
+
+<meta property="og:type" content="website" />
+<!-- Open Graph Meta Data -->
+<meta property="og:title" content="Accessible simple tooltip using ARIA and Vanilla JavaScript - Van11y" />
+<meta property="og:description" content="This script provides an accessible simple tooltip, using ARIA" />
+<meta property="og:image" content="https://van11y.net/apple-touch-icon.png" />
+<meta property="og:url" content="https://van11y.net/simple-tooltip/" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:url" content="https://van11y.net/simple-tooltip/" />
+<meta name="twitter:title" content="Accessible simple tooltip using ARIA and Vanilla JavaScript - Van11y" />
+<meta name="twitter:description" content="This script provides an accessible simple tooltip, using ARIA" />
+<meta name="twitter:image" content="https://van11y.net/apple-touch-icon.png" />
+<meta name="twitter:site" content="Van11y" />
+<meta name="twitter:creator" content="Van11y" />
+
+<meta name="robots" content="index, follow" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+</head>
+<body role="document">
+
+
+<div id="page" class="mw960e" role="main">
+
+ <br>
+ <div class="aligncenter">
+ 	<a href="/" class="logo-link"><img src="https://van11y.net/layout/images/logo-van11y.svg" alt="Back to Van11y home page" width="267" height="90" class="logo" /></a>
+ </div>
+ <br>
+
+ <h1 class="aligncenter">Demo: Accessible simple tooltip using <abbr title="Accessible Rich Internet Applications">ARIA</abbr> and Vanilla JavaScript</h1>
+
+ 
+ <p><button class="js-simple-tooltip button" data-simpletooltip-text="Cool, it works!">Hover or focus me to show the tooltip</button></p>
+
+ <p><button class="js-simple-tooltip button" data-simpletooltip-content-id="tooltip-case_1">Show me another tooltip</button></p>
+ <div id="tooltip-case_1" class="hidden">Woot, you can take the content of a hidden block.</div>
+ 
+ <p class="aligncenter"><button class="js-simple-tooltip button" data-simpletooltip-prefix-class="minimalist-left" data-simpletooltip-text="Yes, with data-simpletooltip-prefix-class, so easy">And another one?</button></p>
+
+
+ <br><br>
+            
+  
+  
+<div class="footer" role="contentinfo"><br>This demo is a demo of <a href="https://van11y.net/accessible-simple-tooltip/" class="link">Van11y accessible simple tooltip using <abbr title="Accessible Rich Internet Applications">ARIA</abbr></a>.<br></div>
+
+</div>
+<script src="../dist/van11y-accessible-simple-tooltip.min.js"></script>
+</body>
+</html>
