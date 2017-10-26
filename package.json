@@ -3,7 +3,7 @@
   "name": "van11y-accessible-simple-tooltip-aria",
   "description": "ES2015 accessible tooltip system, using ARIA",
   "main": "dist/van11y-accessible-simple-tooltip.min.js",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "keywords": [
     "Accessibility",
     "ARIA",
@@ -47,5 +47,5 @@
     "gulp-uglify": "^1.4.2",
 	"gulp-header": "^1.7.1"
   }
-  
+
 }

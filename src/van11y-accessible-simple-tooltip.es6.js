@@ -86,25 +86,31 @@
     };
 
 
+    /** Find all tooltips inside a container
+     * @param  {Node} node Default document
+     * @return {Array}
+     */
+    const $listTooltip = (node = doc) => [].slice.call(node.querySelectorAll('.' + TOOLTIP_SIMPLE));
 
-    // Find all expand
-    const $listTooltip = () => [].slice.call(doc.querySelectorAll('.' + TOOLTIP_SIMPLE));
+    /**
+     * Build tooltips for a container
+     * @param  {Node} node
+     */
+    const attach = (node) => {
 
-    const onLoad = () => {
+        $listTooltip(node)
+            .forEach((tooltip_node) => {
 
-        $listTooltip()
-            .forEach((node, index) => {
-
-                let iLisible = index + 1;
-                let tooltipText = node.hasAttribute(TOOLTIP_DATA_TEXT) === true ? node.getAttribute(TOOLTIP_DATA_TEXT) : '';
-                let prefixClassName = node.hasAttribute(TOOLTIP_DATA_PREFIX_CLASS) === true ? node.getAttribute(TOOLTIP_DATA_PREFIX_CLASS) : '';
-                let contentId = node.hasAttribute(TOOLTIP_DATA_CONTENT_ID) === true ? node.getAttribute(TOOLTIP_DATA_CONTENT_ID) : '';
+                let iLisible = Math.random().toString(32).slice(2, 12);
+                let tooltipText = tooltip_node.hasAttribute(TOOLTIP_DATA_TEXT) === true ? tooltip_node.getAttribute(TOOLTIP_DATA_TEXT) : '';
+                let prefixClassName = tooltip_node.hasAttribute(TOOLTIP_DATA_PREFIX_CLASS) === true ? tooltip_node.getAttribute(TOOLTIP_DATA_PREFIX_CLASS) : '';
+                let contentId = tooltip_node.hasAttribute(TOOLTIP_DATA_CONTENT_ID) === true ? tooltip_node.getAttribute(TOOLTIP_DATA_CONTENT_ID) : '';
 
 
                 // Attach the tooltip position
-                node.setAttribute(ATTR_DESCRIBEDBY, TOOLTIP_SIMPLE_LABEL_ID + iLisible);
+                tooltip_node.setAttribute(ATTR_DESCRIBEDBY, TOOLTIP_SIMPLE_LABEL_ID + iLisible);
 
-                wrapItem(node, prefixClassName)
+                wrapItem(tooltip_node, prefixClassName)
                     .insertAdjacentHTML('beforeEnd', createTooltip({
                         text: tooltipText,
                         index: iLisible,
@@ -113,37 +119,47 @@
                     }));
 
             });
+    };
 
-        // Display/hide
-        ['mouseenter', 'focus', 'mouseleave', 'blur', 'keydown']
-        .forEach(eventName => {
 
-            doc.body
-                .addEventListener(eventName, e => {
 
+    /* listeners */
+    ['mouseenter', 'focus', 'mouseleave', 'blur', 'keydown']
+    .forEach(eventName => {
+
+        doc.body
+            .addEventListener(eventName, e => {
+
+                if (hasClass(e.target, TOOLTIP_SIMPLE) === true) {
+                    let tooltipLauncher = e.target;
                     // display
                     if (eventName === 'mouseenter' || eventName === 'focus') {
-                        if (hasClass(e.target, TOOLTIP_SIMPLE) === true) {
-                            let item = findById(e.target.getAttribute(ATTR_DESCRIBEDBY));
+                        let item = findById(tooltipLauncher.getAttribute(ATTR_DESCRIBEDBY));
+                        if (item) {
                             item.setAttribute(ATTR_HIDDEN, 'false');
                         }
                     }
 
                     // hide
                     if (eventName === 'mouseleave' || eventName === 'blur' || (eventName === 'keydown' && e.keyCode === 27)) {
-                        if (hasClass(e.target, TOOLTIP_SIMPLE) === true) {
-                            let item = findById(e.target.getAttribute(ATTR_DESCRIBEDBY));
+                        let item = findById(tooltipLauncher.getAttribute(ATTR_DESCRIBEDBY));
+                        if (item) {
                             item.setAttribute(ATTR_HIDDEN, 'true');
                         }
                     }
+                }
 
 
-                }, true);
-        });
+            }, true);
+    });
+
+    const onLoad = () => {
+        attach();
         document.removeEventListener('DOMContentLoaded', onLoad);
     }
 
     document.addEventListener('DOMContentLoaded', onLoad);
 
+    window.van11yAccessibleSimpleTooltipAria = attach;
 
 })(document);

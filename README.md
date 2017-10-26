@@ -47,6 +47,10 @@ Use ```data-simpletooltip-text``` or ```data-simpletooltip-content-id``` attribu
 - Attribute ```data-simpletooltip-text```: the text of your tooltip.
 - Attribute ```data-simpletooltip-content-id```: the id of (hidden) content in your page that will be put into your tooltip.
 
+The script is launched when the page is loaded. If you need to execute it on AJAX-inserted content, you may use for example on `<div id="newContent">your tooltip launcher source</div>`:
+
+```van11yAccessibleSimpleTooltipAria(document.getElementById('newContent'));```
+
 __Examples__
 
 Here are three examples:
@@ -61,15 +65,15 @@ Here are three examples:
 <div id="tooltip-case_1" class="hidden">
   Woot, you can take the content of a hidden block.
 </div>
-          
-<button class="js-simple-tooltip" data-simpletooltip-prefix-class="minimalist-left" 
+
+<button class="js-simple-tooltip" data-simpletooltip-prefix-class="minimalist-left"
   data-simpletooltip-text="Yes, with data-simpletooltip-prefix-class, so easy">
  And another one?
 </button>
 ```
 These examples are taken from the [demo](https://van11y.net/downloads/simple-tooltip/demo/index.html).
 
-## How to style it 
+## How to style it
 
 These examples are taken from the [demo](https://van11y.net/downloads/simple-tooltip/demo/index.html).
 ```
@@ -87,8 +91,8 @@ These examples are taken from the [demo](https://van11y.net/downloads/simple-too
 }
 
 /* tooltip styles */
-.simpletooltip, 
-.minimalist-simpletooltip, 
+.simpletooltip,
+.minimalist-simpletooltip,
 .minimalist-left-simpletooltip {
   position: absolute;
   z-index: 666;
@@ -100,7 +104,7 @@ These examples are taken from the [demo](https://van11y.net/downloads/simple-too
   text-align: left;
   line-height: 1.3;
 }
-.simpletooltip, 
+.simpletooltip,
 .minimalist-simpletooltip {
   right: auto;
   left: 100%;
@@ -143,7 +147,7 @@ These examples are taken from the [demo](https://van11y.net/downloads/simple-too
 /* for this example: mobile */
 @media (max-width: 44.375em) {
 
-  .simpletooltip, 
+  .simpletooltip,
   .minimalist-simpletooltip,
   .minimalist-left-simpletooltip  {
     top: 100%;
@@ -153,7 +157,7 @@ These examples are taken from the [demo](https://van11y.net/downloads/simple-too
 	margin-top: .7em;
 	margin-left: -5em;
   }
-  .simpletooltip::before, 
+  .simpletooltip::before,
   .minimalist-simpletooltip::before,
   .minimalist-left-simpletooltip::before  {
     top: -10px;
@@ -164,7 +168,7 @@ These examples are taken from the [demo](https://van11y.net/downloads/simple-too
     border: 10px solid transparent;
     border-bottom: 10px solid rgba( 0, 0, 0, .9 );
   }
-  
+
 }
 ```
 
