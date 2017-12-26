@@ -125,7 +125,7 @@ These examples are taken from the [demo](https://van11y.net/downloads/simple-too
   z-index: 666;
   width: 10px;
   height: 10px;
-  pointer-event: none;
+  pointer-events: none;
 }
 .simpletooltip::before,
 .minimalist-simpletooltip::before {
