@@ -2,7 +2,7 @@
   "title": "Van11y simple tooltip using ARIA",
   "name": "van11y-accessible-simple-tooltip-aria",
   "description": "ES2015 accessible tooltip system, using ARIA",
-  "main": "dist/van11y-accessible-simple-tooltip.min.js",
+  "main": "dist/van11y-accessible-simple-tooltip-aria.min.js",
   "version": "2.0.3",
   "keywords": [
     "Accessibility",
