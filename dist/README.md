@@ -2,9 +2,9 @@
 
 Here are the files produced after Gulp tasks (from ```src``` folder to this one).
 
-- ```van11y-accessible-simple-tooltip.es6.js``` is a copy of the ES6/ES2015 file in ```src``` folder.
-- ```van11y-accessible-simple-tooltip.js``` is a transpiled version of the ES6/ES2015 file in ```src``` folder. Basically, the ES6/ES2015 version has been transformed to an ES5 compatible JS file, which is IE9+ compatible.
-- ```van11y-accessible-simple-tooltip.min.js``` is a minified version of ```van11y-accessible-simple-tooltip.js``` (nothing changed in it, except minification of course).
+- ```van11y-accessible-simple-tooltip-aria.es6.js``` is a copy of the ES6/ES2015 file in ```src``` folder.
+- ```van11y-accessible-simple-tooltip-aria.js``` is a transpiled version of the ES6/ES2015 file in ```src``` folder. Basically, the ES6/ES2015 version has been transformed to an ES5 compatible JS file, which is IE9+ compatible.
+- ```van11y-accessible-simple-tooltip-aria.min.js``` is a minified version of ```van11y-accessible-simple-tooltip-aria.js``` (nothing changed in it, except minification of course).
 
 ## What should I use?
 
