@@ -78,11 +78,7 @@
             }
         }
 
-        return `<span
-      class="${className} ${TOOLTIP_SIMPLE}"
-      id="${id}"
-      role="tooltip"
-      aria-hidden="true">${content}</span>`;
+        return `<span class="${className} ${TOOLTIP_SIMPLE}" id="${id}" role="tooltip" aria-hidden="true">${content}</span>`;
     };
 
 
@@ -96,7 +92,7 @@
      * Build tooltips for a container
      * @param  {Node} node
      */
-    const attach = (node) => {
+    const attach = (node, addListeners = true) => {
 
         $listTooltip(node)
             .forEach((tooltip_node) => {
@@ -119,39 +115,39 @@
                     }));
 
             });
+
+        if (addListeners) {
+            /* listeners */
+            ['mouseenter', 'focus', 'mouseleave', 'blur', 'keydown']
+            .forEach(eventName => {
+
+                doc.body
+                    .addEventListener(eventName, e => {
+
+                        if (hasClass(e.target, TOOLTIP_SIMPLE) === true) {
+                            let tooltipLauncher = e.target;
+                            // display
+                            if (eventName === 'mouseenter' || eventName === 'focus') {
+                                let item = findById(tooltipLauncher.getAttribute(ATTR_DESCRIBEDBY));
+                                if (item) {
+                                    item.setAttribute(ATTR_HIDDEN, 'false');
+                                }
+                            }
+
+                            // hide
+                            if (eventName === 'mouseleave' || eventName === 'blur' || (eventName === 'keydown' && e.keyCode === 27)) {
+                                let item = findById(tooltipLauncher.getAttribute(ATTR_DESCRIBEDBY));
+                                if (item) {
+                                    item.setAttribute(ATTR_HIDDEN, 'true');
+                                }
+                            }
+                        }
+
+
+                    }, true);
+            });
+        }
     };
-
-
-
-    /* listeners */
-    ['mouseenter', 'focus', 'mouseleave', 'blur', 'keydown']
-    .forEach(eventName => {
-
-        doc.body
-            .addEventListener(eventName, e => {
-
-                if (hasClass(e.target, TOOLTIP_SIMPLE) === true) {
-                    let tooltipLauncher = e.target;
-                    // display
-                    if (eventName === 'mouseenter' || eventName === 'focus') {
-                        let item = findById(tooltipLauncher.getAttribute(ATTR_DESCRIBEDBY));
-                        if (item) {
-                            item.setAttribute(ATTR_HIDDEN, 'false');
-                        }
-                    }
-
-                    // hide
-                    if (eventName === 'mouseleave' || eventName === 'blur' || (eventName === 'keydown' && e.keyCode === 27)) {
-                        let item = findById(tooltipLauncher.getAttribute(ATTR_DESCRIBEDBY));
-                        if (item) {
-                            item.setAttribute(ATTR_HIDDEN, 'true');
-                        }
-                    }
-                }
-
-
-            }, true);
-    });
 
     const onLoad = () => {
         attach();

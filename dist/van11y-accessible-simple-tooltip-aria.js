@@ -80,7 +80,7 @@
             }
         }
 
-        return '<span\n      class="' + className + ' ' + TOOLTIP_SIMPLE + '"\n      id="' + id + '"\n      role="tooltip"\n      aria-hidden="true">' + content + '</span>';
+        return '<span class="' + className + ' ' + TOOLTIP_SIMPLE + '" id="' + id + '" role="tooltip" aria-hidden="true">' + content + '</span>';
     };
 
     /** Find all tooltips inside a container
@@ -97,6 +97,7 @@
      * @param  {Node} node
      */
     var attach = function attach(node) {
+        var addListeners = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
 
         $listTooltip(node).forEach(function (tooltip_node) {
 
@@ -115,33 +116,35 @@
                 id: contentId
             }));
         });
+
+        if (addListeners) {
+            /* listeners */
+            ['mouseenter', 'focus', 'mouseleave', 'blur', 'keydown'].forEach(function (eventName) {
+
+                doc.body.addEventListener(eventName, function (e) {
+
+                    if (hasClass(e.target, TOOLTIP_SIMPLE) === true) {
+                        var tooltipLauncher = e.target;
+                        // display
+                        if (eventName === 'mouseenter' || eventName === 'focus') {
+                            var item = findById(tooltipLauncher.getAttribute(ATTR_DESCRIBEDBY));
+                            if (item) {
+                                item.setAttribute(ATTR_HIDDEN, 'false');
+                            }
+                        }
+
+                        // hide
+                        if (eventName === 'mouseleave' || eventName === 'blur' || eventName === 'keydown' && e.keyCode === 27) {
+                            var item = findById(tooltipLauncher.getAttribute(ATTR_DESCRIBEDBY));
+                            if (item) {
+                                item.setAttribute(ATTR_HIDDEN, 'true');
+                            }
+                        }
+                    }
+                }, true);
+            });
+        }
     };
-
-    /* listeners */
-    ['mouseenter', 'focus', 'mouseleave', 'blur', 'keydown'].forEach(function (eventName) {
-
-        doc.body.addEventListener(eventName, function (e) {
-
-            if (hasClass(e.target, TOOLTIP_SIMPLE) === true) {
-                var tooltipLauncher = e.target;
-                // display
-                if (eventName === 'mouseenter' || eventName === 'focus') {
-                    var item = findById(tooltipLauncher.getAttribute(ATTR_DESCRIBEDBY));
-                    if (item) {
-                        item.setAttribute(ATTR_HIDDEN, 'false');
-                    }
-                }
-
-                // hide
-                if (eventName === 'mouseleave' || eventName === 'blur' || eventName === 'keydown' && e.keyCode === 27) {
-                    var item = findById(tooltipLauncher.getAttribute(ATTR_DESCRIBEDBY));
-                    if (item) {
-                        item.setAttribute(ATTR_HIDDEN, 'true');
-                    }
-                }
-            }
-        }, true);
-    });
 
     var onLoad = function onLoad() {
         attach();

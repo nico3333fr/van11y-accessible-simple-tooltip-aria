@@ -49,12 +49,14 @@ Use ```data-simpletooltip-text``` or ```data-simpletooltip-content-id``` attribu
 
 The script is launched when the page is loaded. If you need to execute it on AJAX-inserted content, you may use for example on `<div id="newContent">your tooltip launcher source</div>`:
 
-```van11yAccessibleSimpleTooltipAria(document.getElementById('newContent'));```
+```van11yAccessibleSimpleTooltipAria(document.getElementById('newContent')[, addListeners]);```
+
+<code>addListeners</code> is a facultative boolean (by default set to <code>true</code>) to add tooltip listeners (should be set up only the first time in most of the cases).
 
 __Examples__
 
 Here are three examples:
-```
+```html
 <button class="js-simple-tooltip" data-simpletooltip-text="Cool, it works!">
   Hover or focus me to show the tooltip
 </button>
@@ -76,7 +78,7 @@ These examples are taken from the [demo](https://van11y.net/downloads/simple-too
 ## How to style it
 
 These examples are taken from the [demo](https://van11y.net/downloads/simple-tooltip/demo/index.html).
-```
+```css
 /* Tooltip hidden by default */
 .simpletooltip[aria-hidden="true"],
 .minimalist-simpletooltip[aria-hidden="true"],
@@ -153,18 +155,18 @@ These examples are taken from the [demo](https://van11y.net/downloads/simple-too
   .minimalist-left-simpletooltip  {
     top: 100%;
     left: 50%;
-	right: 0;
+    right: 0;
     margin: 0;
-	margin-top: .7em;
-	margin-left: -5em;
+    margin-top: .7em;
+    margin-left: -5em;
   }
   .simpletooltip::before,
   .minimalist-simpletooltip::before,
   .minimalist-left-simpletooltip::before  {
     top: -10px;
-	right: auto;
-	left: 50%;
-	margin-left: -5px;
+    right: auto;
+    left: 50%;
+    margin-left: -5px;
     margin-top: -10px;
     border: 10px solid transparent;
     border-bottom: 10px solid rgba( 0, 0, 0, .9 );
