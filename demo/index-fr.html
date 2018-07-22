@@ -45,10 +45,10 @@
 
  <p><button class="js-simple-tooltip button" data-simpletooltip-text="Super, ça marche&#8239;!">Survolez-moi ou focusez-moi pour afficher l’infobulle</button></p>
 
- <p><button class="js-simple-tooltip button" data-simpletooltip-content-id="tooltip-case_1">Montrez-moi une autre infobulle</button></p>
+ <p><button class="js-simple-tooltip button" data-simpletooltip-content-id="tooltip-case_1"><span>Montrez-moi une autre infobulle</span></button></p>
  <div id="tooltip-case_1" class="hidden">Super, vous pouvez prendre le contenu d’un bloc caché.</div>
 
- <p class="aligncenter"><button class="js-simple-tooltip button" data-simpletooltip-prefix-class="minimalist-left" data-simpletooltip-text="Oui, avec data-simpletooltip-prefix-class, si facile">Et un autre&#8239;?</button></p>
+ <p class="aligncenter"><button class="js-simple-tooltip2 button" data-simpletooltip-prefix-class2="minimalist-left" data-simpletooltip-text="Oui, avec data-simpletooltip-prefix-class2 et un appel à config différente, si facile">Et un autre&#8239;?</button></p>
 
 
  <br><br>
@@ -59,5 +59,12 @@
 
 </div>
 <script src="../dist/van11y-accessible-simple-tooltip-aria.min.js"></script>
+<script>
+      var other_tooltip = van11yAccessibleSimpleTooltipAria({
+         TOOLTIP_SIMPLE: 'js-simple-tooltip2',
+         TOOLTIP_DATA_PREFIX_CLASS: 'data-simpletooltip-prefix-class2'
+        });
+        other_tooltip.attach();
+</script>
 </body>
 </html>

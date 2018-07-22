@@ -28,7 +28,7 @@ Thanks to ```aria-describedby``` and ```ids``` generated on the fly, you never l
 
 __And JavaScript does the rest__
 
-Some listeners for keyboard and mouse interactions are added, when you activate one, it will updates attributes and manage keyboard, you can close it using Esc.
+Some listeners for keyboard and mouse interactions are added, when you activate one, it will updates attributes and manage keyboard, you can close it using <kbd>Esc</kbd>.
 
 ## How to use it
 
@@ -49,7 +49,10 @@ Use ```data-simpletooltip-text``` or ```data-simpletooltip-content-id``` attribu
 
 The script is launched when the page is loaded. If you need to execute it on AJAX-inserted content, you may use for example on `<div id="newContent">your tooltip launcher source</div>`:
 
-```van11yAccessibleSimpleTooltipAria(document.getElementById('newContent')[, addListeners]);```
+```js
+var my_tooltip = van11yAccessibleSimpleTooltipAria();
+my_expand.attach(document.getElementById('newContent'));
+```
 
 <code>addListeners</code> is a facultative boolean (by default set to <code>true</code>) to add tooltip listeners (should be set up only the first time in most of the cases).
 
@@ -175,3 +178,35 @@ These examples are taken from the [demo](https://van11y.net/downloads/simple-too
 }
 ```
 
+## Bonuses
+
+__Default config__
+
+```js
+const CONFIG = {
+  TOOLTIP_SIMPLE: 'js-simple-tooltip',
+  TOOLTIP_SIMPLE_CONTAINER: 'simpletooltip_container',
+  TOOLTIP_SIMPLE_RAW: 'simpletooltip',
+  TOOLTIP_SIMPLE_LABEL_ID: 'label_simpletooltip_',
+  TOOLTIP_DATA_TEXT: 'data-simpletooltip-text',
+  TOOLTIP_DATA_PREFIX_CLASS: 'data-simpletooltip-prefix-class',
+  TOOLTIP_DATA_CONTENT_ID: 'data-simpletooltip-content-id',
+  ATTR_DESCRIBEDBY: 'aria-describedby',
+  ATTR_HIDDEN: 'aria-hidden',
+  ATTR_ROLE: 'role',
+  ROLE: 'tooltip',
+  ...config
+};
+```
+
+If you need to use another configuration, you may call the plugin like this:
+
+```js
+var other_tooltip = van11yAccessibleSimpleTooltipAria({
+  TOOLTIP_SIMPLE: 'js-simple-tooltip2',
+  TOOLTIP_DATA_PREFIX_CLASS: 'data-simpletooltip-prefix-class2'
+});
+other_tooltip.attach();
+```
+
+Of course, you will have to update your CSS by using the good attributes (if you modify them).

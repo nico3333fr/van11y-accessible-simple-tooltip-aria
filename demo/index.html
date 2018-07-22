@@ -3,7 +3,7 @@
 <head>
  <meta charset="utf-8" />
  <title>Demo: Accessible simple tooltip using ARIA and Vanilla JavaScript - Van11y </title>
- 
+
 <link href="./styles.css" rel="stylesheet" media="all" />
 
 <meta name="description" content="This script provides an accessible simple tooltip, using ARIA" />
@@ -42,22 +42,29 @@
 
  <h1 class="aligncenter">Demo: Accessible simple tooltip using <abbr title="Accessible Rich Internet Applications">ARIA</abbr> and Vanilla JavaScript</h1>
 
- 
+
  <p><button class="js-simple-tooltip button" data-simpletooltip-text="Cool, it works!">Hover or focus me to show the tooltip</button></p>
 
  <p><button class="js-simple-tooltip button" data-simpletooltip-content-id="tooltip-case_1">Show me another tooltip</button></p>
  <div id="tooltip-case_1" class="hidden">Woot, you can take the content of a hidden block.</div>
- 
- <p class="aligncenter"><button class="js-simple-tooltip button" data-simpletooltip-prefix-class="minimalist-left" data-simpletooltip-text="Yes, with data-simpletooltip-prefix-class, so easy">And another one?</button></p>
+
+ <p class="aligncenter"><button class="js-simple-tooltip2 button" data-simpletooltip-prefix-class2="minimalist-left" data-simpletooltip-text="Yes, with data-simpletooltip-prefix-class2 and a new config call, so easy">And another one?</button></p>
 
 
  <br><br>
-            
-  
-  
+
+
+
 <div class="footer" role="contentinfo"><br>This demo is a demo of <a href="https://van11y.net/accessible-simple-tooltip/" class="link">Van11y accessible simple tooltip using <abbr title="Accessible Rich Internet Applications">ARIA</abbr></a>.<br></div>
 
 </div>
 <script src="../dist/van11y-accessible-simple-tooltip-aria.min.js"></script>
+<script>
+    var other_tooltip = van11yAccessibleSimpleTooltipAria({
+       TOOLTIP_SIMPLE: 'js-simple-tooltip2',
+       TOOLTIP_DATA_PREFIX_CLASS: 'data-simpletooltip-prefix-class2'
+      });
+      other_tooltip.attach();
+</script>
 </body>
 </html>
